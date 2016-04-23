@@ -135,9 +135,11 @@ function getFilter(item)
 
 // To be called on unload
 function cleanUp() {
-  requestNotifier.shutdown();
+  if (requestNotifier) requestNotifier.shutdown();
   FilterNotifier.removeListener(reloadDisabledFilters);
   Prefs.removeListener(onPrefChange);
+  requestNotifier=null;
+  treeView=null;
   E("list").view = null;
 
   let {removeBrowserLocationListener} = require("appSupport");
