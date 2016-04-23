@@ -68,15 +68,6 @@ function init() {
     let mustDetach = parent.arguments[0];
     if (mustDetach)
       E("reattachButton").setAttribute("disabled", "true");
-    if ("sidebar" in UI.hotkeys)
-    {
-      let {KeySelector} = require("keySelector");
-      parent.addEventListener("keypress", function(event)
-      {
-        if (KeySelector.matchesKey(event, UI.hotkeys.sidebar))
-          doClose();
-      }, false);
-    }
 
     // Set default size/position unless already persisted
     let defaults = {screenX: 0, screenY: 0, width: 600, height: 300};
