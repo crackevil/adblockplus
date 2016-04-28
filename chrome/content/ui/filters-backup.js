@@ -299,7 +299,7 @@ var Backup =
       let typeAddition = "";
       if (subscription.defaults)
         typeAddition = "/" + subscription.defaults.join("/");
-      list.push("! [" + subscription.title + "]" + typeAddition);
+      list.push("! [" + getSubscriptionTitle(subscription) + "]" + typeAddition);
       for (let j = 0; j < subscription.filters.length; j++)
       {
         let filter = subscription.filters[j];
@@ -315,7 +315,10 @@ var Backup =
           minVersion = "2.1";
 
         if (filter instanceof RegExpFilter && filter.contentType & (RegExpFilter.typeMap.GENERICHIDE | RegExpFilter.typeMap.GENERICBLOCK) && Services.vc.compare(minVersion, "2.6.12") < 0)
-          minVersion  = "2.6.12";
+          minVersion = "2.6.12";
+
+        if (filter instanceof CSSPropertyFilter && Services.vc.compare(minVersion, "2.7.3") < 0)
+          minVersion = "2.7.3";
       }
     }
     list.unshift("[Adblock Plus " + minVersion + "]");
