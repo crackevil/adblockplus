@@ -317,9 +317,11 @@ var remoteDataSource =
 {
   collectData: function(outerWindowID, windowURI, browser, callback)
   {
-    let dataCollector = require("dataCollector");
+    let {port} = require("messaging");
     let screenshotWidth = screenshotDataSource.getWidth();
-    dataCollector.collectData(outerWindowID, screenshotWidth, data => {
+    port.emitWithResponse("collectData", {outerWindowID, screenshotWidth})
+        .then(data =>
+    {
       screenshotDataSource.setData(data && data.screenshot);
       framesDataSource.setData(windowURI, data && data.opener, data && data.referrer, data && data.frames);
 
@@ -757,7 +759,7 @@ var subscriptionUpdateDataSource =
         entry.removeAttribute("hidden");
         entry.setAttribute("_url", subscription.url);
         entry.setAttribute("tooltiptext", subscription.url);
-        entry.textContent = subscription.title;
+        entry.textContent = getSubscriptionTitle(subscription);
         list.appendChild(entry);
       }
     }
@@ -996,8 +998,8 @@ var issuesDataSource =
         let element = template.cloneNode(true);
         element.removeAttribute("id");
         element.removeAttribute("hidden");
-        element.firstChild.setAttribute("value", subscription.title);
-        element.setAttribute("tooltiptext", subscription instanceof DownloadableSubscription ? subscription.url : subscription.title);
+        element.firstChild.setAttribute("value", getSubscriptionTitle(subscription));
+        element.setAttribute("tooltiptext", subscription instanceof DownloadableSubscription ? subscription.url : getSubscriptionTitle(subscription));
         element.abpSubscription = subscription;
         disabledSubscriptionsBox.appendChild(element);
       }

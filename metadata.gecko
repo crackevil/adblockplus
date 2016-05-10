@@ -1,7 +1,7 @@
 [general]
 id={d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}
 basename=adblockplus
-version=2.7.2
+version=2.7.3
 author=Wladimir Palant
 options=chrome://adblockplus/content/ui/settings.xul
 optionsType=2
@@ -29,11 +29,11 @@ zh-CN=https://adblockplus.org/zh_CN/
 zh-TW=https://adblockplus.org/zh_TW/
 
 [compat]
-firefox=38.0/48.0
-fennec2=38.0/48.0
-thunderbird=38.0/48.0
-seamonkey=2.35/2.45
-toolkit=38.0/48.0
+firefox=38.0/49.0
+fennec2=38.0/49.0
+thunderbird=38.0/49.0
+seamonkey=2.35/2.46
+toolkit=38.0/49.0
 adblockbrowser=1.0/1.0
 
 [mapping]
@@ -71,6 +71,7 @@ lib/antiadblockInit.js = adblockpluscore/lib/antiadblockInit.js
 lib/cssRules.js = adblockpluscore/lib/cssRules.js
 lib/downloader.js = adblockpluscore/lib/downloader.js
 lib/elemHide.js = adblockpluscore/lib/elemHide.js
+lib/events.js = adblockpluscore/lib/events.js
 lib/filterClasses.js = adblockpluscore/lib/filterClasses.js
 lib/filterListener.js = adblockpluscore/lib/filterListener.js
 lib/filterNotifier.js = adblockpluscore/lib/filterNotifier.js
@@ -81,4 +82,5 @@ lib/subscriptionClasses.js = adblockpluscore/lib/subscriptionClasses.js
 lib/synchronizer.js = adblockpluscore/lib/synchronizer.js
 
 [import_locales]
+adblockplusui/locale/*/common.json = *
 adblockplusui/locale/*/firstRun.json = *
